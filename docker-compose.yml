@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  server:
+    build:
+      context: .
+    ports:
+      - "2000:2000"
+    command: ["java", "-cp", "/app/bin", "server.MainServer"]
+
+  client1:
+    build:
+      context: .
+    depends_on:
+      - server
+    command: ["java", "-cp", "/app/bin", "client.ClientAddition"]
+
+  client2:
+    build:
+      context: .
+    depends_on:
+      - server
+      - client1
+    command: ["java", "-cp", "/app/bin", "client.ClientSubtraction"]
+
+  client3:
+    build:
+      context: .
+    depends_on:
+      - server
+      - client2
+    command: ["java", "-cp", "/app/bin", "client.ClientMultiply"]
+
+  client4:
+    build:
+      context: .
+    depends_on:
+      - server
+      - client3
+    command: ["java", "-cp", "/app/bin", "client.ClientDivision"]
