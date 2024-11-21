@@ -16,7 +16,7 @@ public class MultiplicationServiceImpl extends UnicastRemoteObject implements Op
     }
 
     @Override
-    public double execute(double a) throws RemoteException {
+    public synchronized double execute(double a) throws RemoteException {
         return state.updateValue(a, "multiply");
     }
 }

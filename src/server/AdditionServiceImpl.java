@@ -14,7 +14,7 @@ public class AdditionServiceImpl extends UnicastRemoteObject implements Operatio
     }
 
     @Override
-    public double execute(double a) throws RemoteException {
+    public synchronized double execute(double a) throws RemoteException {
         return state.updateValue(a, "add");
     }
 }

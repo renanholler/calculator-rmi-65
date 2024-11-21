@@ -15,7 +15,7 @@ public class SubtractionServiceImpl extends UnicastRemoteObject implements Opera
     }
 
     @Override
-    public double execute(double a) throws RemoteException {
+    public synchronized double execute(double a) throws RemoteException {
         return state.updateValue(a, "subtract");
     }
 }
